@@ -1,0 +1,38 @@
+body,
+p,
+h1,
+h2,
+a,
+form{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+
+}
+
+body{
+    background-color: #222222;
+    margin: 0 auto;
+    max-width: 750px;
+}
+.logo{
+    margin: 108px 0;
+    text-align: center;
+}
+.criar_tarefas{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.criar_tarefas input{
+    background-color: #363636;
+    border: none;
+    width: 37.5rem;
+    height: 3.375rem;
+    border-radius: 8px;
+}
+.criar_tarefas input::placeholder{ 
+    font-family: 'Inter', Arial, sans-serif;  
+    font-size: 1rem;
+    font-weight: 400;
+}
