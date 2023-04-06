@@ -36,3 +36,15 @@ body{
     font-size: 1rem;
     font-weight: 400;
 }
+.criar_tarefas button{
+    background-color: #1a1a1a;
+    width: 5.625rem;
+    height: 3.25rem;
+    border: none;
+    color: #8F8F8F;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 0.875rem;
+    border-radius: 8px;
+
+}
