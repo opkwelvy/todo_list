@@ -6,31 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/bold/style.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/bold/style.css"/> -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Todo - List</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="./imgs/todo-log.svg" alt="logo">
-        </div>
+    <header class="logo">
+        <img src="./imgs/todo-log.svg" alt="logo">
     </header>
-    <main >
+    <main>
         <form class="criar_tarefas" action="entrada">
             <input type="text" id="entrada_tarefa" placeholder="Adicione uma nova tarefa">
             <button type="submit">Criar</button>
         </form>
-    </main>
-    <div>
-        <span></span>
-    </div>
-    <article>
-        <div class="">
+        <div>
+            <span></span>
+        </div>
+        <section class="contador">
             <p>Tarefas criadas <span>0</span></p>
             <p>Concluídas <span>0</span></p>
-        </div>
-    </article>
+        </section>
+        <section class="task_vazias">
+            <img src="./imgs/Group 6.svg" alt="ícone de vazio">
+            <div>
+                <p><strong>Você ainda não tem tarefas cadastradas</strong></p>
+                <p>Crie tarefas e organize seus itens a fazer</p>
+            </div>
+        </section>
+        <ul class="task_list">
+            <li class="task">
+                <p>Tarefa Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum odio dolor maiores expedita nam repellendus quisquam nesciunt molestiae! In vero officia est fugiat dolores, debitis nostrum delectus consectetur neque optio?</p>
+            </li>
+        </ul>
+    </main>
 </body>
 </html>

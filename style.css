@@ -1,19 +1,28 @@
-body,
-p,
-h1,
-h2,
-a,
-form{
+:root{
+    --cinza-100: #fff;
+    --cinza-200: #d9d9d9;
+    --cinza-300: #808080;
+    --cinza-400: #707070;
+    --cinza-500: #363636;
+    --cinza-600: #222;
+    --cinza-700:#1a1a1a;
+    --azul-500: #4e6ede;
+    --green-500: #26c277;
+    --yellow-500: #ffd321;
+}
+*{
     margin: 0;
     padding: 0;
     text-decoration: none;
+    box-sizing: border-box;
+    transition: all .3 ease-out;
 
 }
 
 body{
-    background-color: #222222;
+    background-color: var(--cinza-600);
     margin: 0 auto;
-    max-width: 750px;
+    max-width: 46rem;
 }
 .logo{
     margin: 108px 0;
@@ -21,30 +30,44 @@ body{
 }
 .criar_tarefas{
     display: flex;
+    flex: 1;
     flex-wrap: wrap;
     gap: 16px;
 }
 .criar_tarefas input{
-    background-color: #363636;
+    background-color: var(--cinza-500);
+    font-family: "Inter", Arial, sans-serif;  
+    font-size: 1rem;
     border: none;
     width: 37.5rem;
     height: 3.375rem;
     border-radius: 8px;
 }
 .criar_tarefas input::placeholder{ 
-    font-family: 'Inter', Arial, sans-serif;  
+    font-family: "Inter", Arial, sans-serif;  
     font-size: 1rem;
     font-weight: 400;
 }
 .criar_tarefas button{
-    background-color: #1a1a1a;
+    background-color: var(--cinza-700);
     width: 5.625rem;
     height: 3.25rem;
     border: none;
     color: #8F8F8F;
-    font-family: 'Inter', Arial, sans-serif;
+    font-family: "Inter", Arial, sans-serif;
     font-weight: bold;
     font-size: 0.875rem;
     border-radius: 8px;
+
+}
+.contador {
+    display: flex;
+    justify-content: space-between;
+    max-width: 43.74rem;
+}
+@media (max-width: 768px){
+    html{
+        font-size: 87.5%;
+    }
 
 }
