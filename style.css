@@ -1,7 +1,9 @@
+/* Configurações gerais */
 :root{
     --cinza-100: #fff;
     --cinza-200: #d9d9d9;
-    --cinza-300: #808080;
+    --cinza-300:  #808080;
+    --cinza-350: #303030;
     --cinza-400: #707070;
     --cinza-500: #363636;
     --cinza-600: #222;
@@ -9,11 +11,13 @@
     --azul-500: #4e6ede;
     --azul-700: #3352c3;
     --green-500: #26c277;
+    --green-700: #093d24;
     --yellow-500: #ffd321;
+    --yellow-700: #644f04
 }
 *{
+    font-family: "Inter", Arial, sans-serif;  
     margin: 0;
-    padding: 0;
     text-decoration: none;
     box-sizing: border-box;
     transition: all .3s ease-out;
@@ -24,18 +28,21 @@ body{
     background-color: var(--cinza-600);
     margin: 0 auto;
     max-width: 46rem;
+    padding: 0 1rem 5rem 1rem;
 }
+/* Logo */
 header{
     margin: 6.75rem 0;
     text-align: center;
 }
+/* Criador de tarefas */
 .criar_tarefas{
     display: flex;
     gap: 16px;
+    margin-bottom: 48px;
 }
 .criar_tarefas input{
     background-color: var(--cinza-500);
-    font-family: "Inter", Arial, sans-serif;  
     font-size: 1rem;
     border: solid 1px transparent;
     width: 95%;
@@ -50,7 +57,6 @@ header{
     transition: .3s;
 }
 .criar_tarefas input::placeholder{ 
-    font-family: "Inter", Arial, sans-serif;  
     font-size: 1rem;
     font-weight: 400;
 }
@@ -60,7 +66,6 @@ header{
     height: 3.25rem;
     border: none;
     color: var(--cinza-100);
-    font-family: "Inter", Arial, sans-serif;
     font-weight: bold;
     font-size: 0.875rem;
     border-radius: 8px;
@@ -81,10 +86,76 @@ header{
 .criar_tarefas button i{
    font-size: 22px;
 }
+/* Contador de tarefas */
 .contador {
+    max-width: 46rem;
     display: flex;
     justify-content: space-between;
+    padding: 1.31rem;
+    border-top: solid 3px var(--cinza-500);
+    border-bottom: solid 3px var(--cinza-500);
+    margin-bottom: 24px;
 }
+.criadas,
+.concluidas{
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+.criadas{
+    color: var(--yellow-500);
+}
+.criadas span{
+    background-color: var(--yellow-500);
+    padding: 6px 12px;
+    color: var(--yellow-700);
+    border-radius: 999px;
+}
+.concluidas{
+    color: var(--green-500);
+}
+.concluidas span{
+    background-color: var(--green-500);
+    padding: 6px 12px;
+    color: var(--green-700);
+    border-radius: 999px;
+}
+.count{
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-left: 8px;
+}
+/* Painel de tarefas vazio */
+.task_vazias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--cinza-300);
+    gap: 32px;
+    font-size: 1.3rem;
+    
+}
+.task_vazias div{
+    padding-top: 18px;
+    list-style: none;
+}
+/* Painel de tasks preenchido*/
+.task_list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    max-width: 46rem;
+}
+.task{
+    color: var(--cinza-100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--cinza-350);
+}
+.hidden{
+    display: none;
+}
+/* Responsividade */
 @media (max-width: 768px){
     html{
         font-size: 87.5%;

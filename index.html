@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/bold/style.css"/>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/duotone/style.css"
+/>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Todo - List</title>
@@ -20,14 +22,11 @@
             <input type="text" id="entrada_tarefa" placeholder="Adicione uma nova tarefa">
             <button type="submit">Criar <i class="ph-bold ph-plus-circle"></i></button>
         </form>
-        <div>
-            <span></span>
-        </div>
         <section class="contador">
-            <p>Tarefas criadas <span>0</span></p>
-            <p>Concluídas <span>0</span></p>
+            <p class="criadas">Tarefas criadas <span class="count">0</span></p>
+            <p class="concluidas">Concluídas <span class="count">0</span></p>
         </section>
-        <section class="task_vazias">
+        <section class="task_vazias hidden">
             <img src="./imgs/Group 6.svg" alt="ícone de vazio">
             <div>
                 <p><strong>Você ainda não tem tarefas cadastradas</strong></p>
@@ -36,7 +35,18 @@
         </section>
         <ul class="task_list">
             <li class="task">
-                <p>Tarefa Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum odio dolor maiores expedita nam repellendus quisquam nesciunt molestiae! In vero officia est fugiat dolores, debitis nostrum delectus consectetur neque optio?</p>
+                <div>
+                    <i class="ph-duotone ph-circle-dashed"></i>
+                    <p> quisquam nesciunt molestiae! In vero </p>
+                </div>
+                <i class="ph-duotone ph-trash"></i>
+            </li>
+            <li class="task">
+                <div>
+                    <i class="ph-duotone ph-circle-dashed"></i>
+                    <p> nam repellendus quisquam nesciunt moles</p>
+                </div>
+                <i class="ph-duotone ph-trash"></i>
             </li>
         </ul>
     </main>
