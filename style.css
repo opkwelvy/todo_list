@@ -52,6 +52,7 @@ header{
     border-radius: 8px;
     padding: 1rem;
     transition: .3s;
+    color: var(--cinza-100);
 }
 .criar_tarefas input:hover{
     cursor: pointer;

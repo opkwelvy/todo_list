@@ -19,14 +19,14 @@
     </header>
     <main>
         <form class="criar_tarefas" action="entrada">
-            <input type="text" id="entrada_tarefa" placeholder="Adicione uma nova tarefa">
-            <button type="submit">Criar <i class="ph-bold ph-plus-circle"></i></button>
+            <input id="entrada_task" type="text" id="entrada_tarefa" placeholder="Adicione uma nova tarefa">
+            <button type="submit" onclick="adicionarTask(event)">Criar <i class="ph-bold ph-plus-circle"></i></button>
         </form>
         <section class="contador">
             <p class="criadas">Tarefas criadas <span class="count">0</span></p>
             <p class="concluidas">Concluídas <span class="count">0</span></p>
         </section>
-        <section class="task_vazias hidden">
+        <section class="task_vazias">
             <img src="./imgs/Group 6.svg" alt="ícone de vazio">
             <div>
                 <p><strong>Você ainda não tem tarefas cadastradas</strong></p>
@@ -34,21 +34,8 @@
             </div>
         </section>
         <ul class="task_list">
-            <li class="task aberta">
-                <div>
-                    <i class="ph-duotone ph-circle-dashed check_btn"></i>
-                    <p> quisquam nesciunt molestiae! In vero </p>
-                </div>
-                <i class="ph-duotone ph-trash delete_btn"></i>
-            </li>
-            <li class="task fechada">
-                <div>
-                    <i class="ph-duotone ph-check-circle check_btn"></i>
-                    <p> nam repellendus quisquam nesciunt moles</p>
-                </div>
-                <i class="ph-duotone ph-trash delete_btn"></i>
-            </li>
         </ul>
     </main>
+    <script src="./script.js"></script>
 </body>
 </html>
