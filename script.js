@@ -7,8 +7,40 @@ let tasks = [
 const entradaTask = document.getElementById("entrada_task");
 const buttonInput = document.getElementsByTagName("button")[0];
 const listaTask = document.querySelector('ul');
+const tasksAbertasTexto = document.querySelector('.todo_count');
+const tasksConcluidasTexto = document.querySelector(".done_count");
+const taskVazia = document.querySelector('.task_vazias');
+saveInfos()
 
+//verificador
+function verifyListIsEmpty(){
+    if(tasks.length == 0){
+        taskVazia.classList.remove("hidden");
+    } else {
+        taskVazia.classList.add("hidden");
+    }
+}
+// Contador de tasks
+function contador(){
+    let toDoCount = 0;
+    let doneCount = 0;
+    toDoCount = tasks.length;
+    tasksAbertasTexto.innerText = `${toDoCount}`
+    // tasks.forEach((task)=>{
+    //     if(task.aberta==false){
+    //         doneCount++;
+    //     }
+    //     tasksAbertasTexto.innerText=`${doneCount}`;
+    // }
+    // )
+    for(const task of tasks){
+        if(task.aberta == false){
+            doneCount++;
+        }
+    }
+    tasksConcluidasTexto.innerText = `${doneCount}`
 
+}
 
 //Criação de novo elemento taks
 function criarNovaTask(taskName, taskId){
@@ -47,7 +79,9 @@ function criarNovaTask(taskName, taskId){
     leftContent.append(name);
     task.appendChild(leftContent);
     task.appendChild(deleteIcon);
-    
+    contador()
+    verifyListIsEmpty()
+    saveInfos()
     return task;
 }
 
@@ -67,12 +101,14 @@ function adicionarTask(event){
     listaTask.appendChild(taskElement);
     const tagOcultada = document.querySelector('section.task_vazias');
     tagOcultada.classList.add("hidden");
+    contador()
+    verifyListIsEmpty()
+    saveInfos()
 }
-
 
 // Task completa
 function finalizarTask(event){
-    console.log('Finalizar tarefa')
+
     
     const todoIcon = event.target;
     todoIcon.classList.add("hidden");
@@ -81,7 +117,7 @@ function finalizarTask(event){
     const taskToComplete = document.getElementById(taskToCompletId);
 
     taskToComplete.classList.add("fechada");
-    taskToComplete.classList.remove("aberta")
+    taskToComplete.classList.remove("aberta");
 
     const doneIcon = todoIcon.parentNode.childNodes[1];
     doneIcon.classList.remove("hidden");
@@ -89,28 +125,60 @@ function finalizarTask(event){
         if(item.id==taskToCompletId){
             item.aberta = false;
         }
-        return item.id == taskToCompletId
     })
-
+    contador()
+    verifyListIsEmpty()
+    saveInfos()
 }
-
 
 // Task incompleta
 function abrirTask(event){
-    console.log('Retomar tarefa')
+
+    const doneIcon = event.target;
+    doneIcon.classList.add("hidden");
+
+    const taskToCompletId = doneIcon.parentNode.parentNode.id;
+    const taskToComplete = document.getElementById(taskToCompletId);
+
+    taskToComplete.classList.add("aberta");
+    taskToComplete.classList.remove("fechada");
+    
+    const todoIcon = doneIcon.parentNode.childNodes[0];
+    todoIcon.classList.remove("hidden");
+
+    tasks.find((item)=>{
+        if(item.id == taskToCompletId){
+            item.aberta = true;
+        }
+    })
+    contador()
+    verifyListIsEmpty()
+    saveInfos()
 }
 
 
 // Task deletada
 function excluirTask(event){
-    console.log('Excluir tarefa')
+    const taskToDeleteId = event.target.parentNode.id;
+    const taskToDelete = document.getElementById(taskToDeleteId);
+    const taskWithoutDeleteOne = tasks.filter((item)=>{
+        return item.id !== taskToDeleteId
+    })
+   tasks = taskWithoutDeleteOne;
+   listaTask.removeChild(taskToDelete);
+   contador()
+   verifyListIsEmpty()
+   saveInfos()
 }
-
-
 // Sincronia do html com a lista de task
 tasks.forEach((task)=>{
     const taskItem = criarNovaTask(task.name, task.id);
     listaTask.appendChild(taskItem);
 })
-
-// Contador de tasks
+// Salvar informações
+function saveInfos(){
+    let tasksJason = JSON.stringify(tasks);
+    localStorage.setItem("minhasTasks", tasksJason);
+    let tasksJasonExtraidas = localStorage.getItem("minhasTasks");
+    tasks = JSON.parse(tasksJasonExtraidas);
+}
