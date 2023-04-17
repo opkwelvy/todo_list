@@ -73,6 +73,25 @@ function adicionarTask(event){
 // Task completa
 function finalizarTask(event){
     console.log('Finalizar tarefa')
+    
+    const todoIcon = event.target;
+    todoIcon.classList.add("hidden");
+
+    const taskToCompletId = todoIcon.parentNode.parentNode.id;
+    const taskToComplete = document.getElementById(taskToCompletId);
+
+    taskToComplete.classList.add("fechada");
+    taskToComplete.classList.remove("aberta")
+
+    const doneIcon = todoIcon.parentNode.childNodes[1];
+    doneIcon.classList.remove("hidden");
+    tasks.find((item)=>{
+        if(item.id==taskToCompletId){
+            item.aberta = false;
+        }
+        return item.id == taskToCompletId
+    })
+
 }
 
 
