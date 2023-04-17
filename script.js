@@ -4,13 +4,18 @@ function uid(){
 let tasks = [
 
 ]
+tasks.forEach((task)=>{
+    const taskItem = criarNovaTask(task.name, task.id);
+    listaTask.appendChild(taskItem);
+})
 const entradaTask = document.getElementById("entrada_task");
 const buttonInput = document.getElementsByTagName("button")[0];
 const listaTask = document.querySelector('ul');
 const tasksAbertasTexto = document.querySelector('.todo_count');
 const tasksConcluidasTexto = document.querySelector(".done_count");
 const taskVazia = document.querySelector('.task_vazias');
-saveInfos()
+// Sincronia do html com a lista de task
+
 
 //verificador
 function verifyListIsEmpty(){
@@ -89,7 +94,6 @@ function criarNovaTask(taskName, taskId){
 // Criação de tarefas
 function adicionarTask(event){
     event.preventDefault();
-    console.log('Adicionar tarefa')
     const taskName = entradaTask.value;
     const newTask ={
         id: uid(),
@@ -170,15 +174,12 @@ function excluirTask(event){
    verifyListIsEmpty()
    saveInfos()
 }
-// Sincronia do html com a lista de task
-tasks.forEach((task)=>{
-    const taskItem = criarNovaTask(task.name, task.id);
-    listaTask.appendChild(taskItem);
-})
 // Salvar informações
 function saveInfos(){
     let tasksJason = JSON.stringify(tasks);
     localStorage.setItem("minhasTasks", tasksJason);
-    let tasksJasonExtraidas = localStorage.getItem("minhasTasks");
-    tasks = JSON.parse(tasksJasonExtraidas);
+}
+function ativaInfos(){
+    let tasksJason = localStorage.getItem("minhasTasks")
+    tasks = tasksJason;
 }
