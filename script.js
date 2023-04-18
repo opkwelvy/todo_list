@@ -1,13 +1,8 @@
 function uid(){
     return Date.now().toString(16) + Math.random().toString(16).substring(2);
 }
-let tasks = [
-
-]
-tasks.forEach((task)=>{
-    const taskItem = criarNovaTask(task.name, task.id);
-    listaTask.appendChild(taskItem);
-})
+let tasks = [];
+getInfos();
 const entradaTask = document.getElementById("entrada_task");
 const buttonInput = document.getElementsByTagName("button")[0];
 const listaTask = document.querySelector('ul');
@@ -15,8 +10,10 @@ const tasksAbertasTexto = document.querySelector('.todo_count');
 const tasksConcluidasTexto = document.querySelector(".done_count");
 const taskVazia = document.querySelector('.task_vazias');
 // Sincronia do html com a lista de task
-
-
+tasks.forEach((task)=>{
+    const taskItem = criarNovaTask(task.name, task.id);
+    listaTask.appendChild(taskItem);
+})
 //verificador
 function verifyListIsEmpty(){
     if(tasks.length == 0){
@@ -31,13 +28,6 @@ function contador(){
     let doneCount = 0;
     toDoCount = tasks.length;
     tasksAbertasTexto.innerText = `${toDoCount}`
-    // tasks.forEach((task)=>{
-    //     if(task.aberta==false){
-    //         doneCount++;
-    //     }
-    //     tasksAbertasTexto.innerText=`${doneCount}`;
-    // }
-    // )
     for(const task of tasks){
         if(task.aberta == false){
             doneCount++;
@@ -84,9 +74,9 @@ function criarNovaTask(taskName, taskId){
     leftContent.append(name);
     task.appendChild(leftContent);
     task.appendChild(deleteIcon);
-    contador()
-    verifyListIsEmpty()
-    saveInfos()
+    contador();
+    verifyListIsEmpty();
+    saveInfos();
     return task;
 }
 
@@ -105,9 +95,9 @@ function adicionarTask(event){
     listaTask.appendChild(taskElement);
     const tagOcultada = document.querySelector('section.task_vazias');
     tagOcultada.classList.add("hidden");
-    contador()
-    verifyListIsEmpty()
-    saveInfos()
+    contador();
+    verifyListIsEmpty();
+    saveInfos();
 }
 
 // Task completa
@@ -130,9 +120,9 @@ function finalizarTask(event){
             item.aberta = false;
         }
     })
-    contador()
-    verifyListIsEmpty()
-    saveInfos()
+    contador();
+    verifyListIsEmpty();
+    saveInfos();
 }
 
 // Task incompleta
@@ -155,8 +145,8 @@ function abrirTask(event){
             item.aberta = true;
         }
     })
-    contador()
-    verifyListIsEmpty()
+    contador();
+    verifyListIsEmpty();
     saveInfos()
 }
 
@@ -170,16 +160,27 @@ function excluirTask(event){
     })
    tasks = taskWithoutDeleteOne;
    listaTask.removeChild(taskToDelete);
-   contador()
-   verifyListIsEmpty()
+   contador();
+   verifyListIsEmpty();
    saveInfos()
 }
 // Salvar informações
+// function teste(){
+//     if(localStorage.getItem("minhasTaks").length !== 0){
+//         let tasksJason = localStorage.getItem("minhasTasks");
+//         tasksJason = JSON.parse(tasksJason);
+//         tasks = tasksJason;
+//     } else {
+//         let tasksJason = JSON.stringify(tasks);
+//         localStorage.setItem("minhasTasks", tasksJason);
+//     }
+// }
+
+function getInfos(){
+    let tasksJason = localStorage.getItem("minhasTasks"); 
+    tasks = JSON.parse(tasksJason);
+}
 function saveInfos(){
     let tasksJason = JSON.stringify(tasks);
     localStorage.setItem("minhasTasks", tasksJason);
-}
-function ativaInfos(){
-    let tasksJason = localStorage.getItem("minhasTasks")
-    tasks = tasksJason;
 }
