@@ -2,7 +2,7 @@ function uid(){
     return Date.now().toString(16) + Math.random().toString(16).substring(2);
 }
 let tasks = [];
-getInfos();
+inicializarLocalStorage();
 const entradaTask = document.getElementById("entrada_task");
 const buttonInput = document.getElementsByTagName("button")[0];
 const listaTask = document.querySelector('ul');
@@ -10,10 +10,10 @@ const tasksAbertasTexto = document.querySelector('.todo_count');
 const tasksConcluidasTexto = document.querySelector(".done_count");
 const taskVazia = document.querySelector('.task_vazias');
 // Sincronia do html com a lista de task
-tasks.forEach((task)=>{
-    const taskItem = criarNovaTask(task.name, task.id);
-    listaTask.appendChild(taskItem);
-})
+if (tasks.length > 0) {
+    listItems();
+}
+
 //verificador
 function verifyListIsEmpty(){
     if(tasks.length == 0){
@@ -151,6 +151,24 @@ function abrirTask(event){
 }
 
 
+function listItems() {
+    tasks.forEach((task)=>{
+        const taskItem = criarNovaTask(task.name, task.id);
+        listaTask.appendChild(taskItem);
+        if(task.aberta==false){
+            const id = task.id;
+            const taskClosed = document.getElementById(id);
+            const iconDone = taskClosed.querySelector(".ph-check-circle");
+            const iconToDo = taskClosed.querySelector(".ph-circle-dashed");
+            taskClosed.classList.add("fechada");
+            taskClosed.classList.remove("aberta");
+            iconDone.classList.remove("hidden");
+            iconToDo.classList.add("hidden");
+        }
+        
+    })
+}
+
 // Task deletada
 function excluirTask(event){
     const taskToDeleteId = event.target.parentNode.id;
@@ -165,20 +183,19 @@ function excluirTask(event){
    saveInfos()
 }
 // Salvar informações
-// function teste(){
-//     if(localStorage.getItem("minhasTaks").length !== 0){
-//         let tasksJason = localStorage.getItem("minhasTasks");
-//         tasksJason = JSON.parse(tasksJason);
-//         tasks = tasksJason;
-//     } else {
-//         let tasksJason = JSON.stringify(tasks);
-//         localStorage.setItem("minhasTasks", tasksJason);
-//     }
-// }
+function inicializarLocalStorage(){
+
+    if(!localStorage.getItem("minhasTasks")){
+        localStorage.setItem("minhasTasks", "")
+    } else {
+        getInfos();        
+    }
+}
 
 function getInfos(){
-    let tasksJason = localStorage.getItem("minhasTasks"); 
+    let tasksJason = localStorage.getItem("minhasTasks");
     tasks = JSON.parse(tasksJason);
+    console.log(tasks);
 }
 function saveInfos(){
     let tasksJason = JSON.stringify(tasks);
